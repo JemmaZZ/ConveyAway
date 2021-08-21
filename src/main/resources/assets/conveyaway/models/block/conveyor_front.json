@@ -1,0 +1,29 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"1": "conveyaway:block/conveyor_side",
+		"particle": "conveyaway:block/conveyor"
+	},
+	"elements": [
+		{
+			"from": [0, 1, 0],
+			"to": [16, 7, 1],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 6], "texture": "#1"},
+				"east": {"uv": [0, 0, 1, 6], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 6], "texture": "#1"},
+				"west": {"uv": [0, 0, 1, 6], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "conveyor",
+			"origin": [0, 0, 0],
+			"children": [0]
+		}
+	]
+}

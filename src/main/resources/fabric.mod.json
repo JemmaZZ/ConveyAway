@@ -1,29 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "conveyaway",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "ConveyAway",
+  "description": "Basically, convey.",
   "authors": [
-    "Me!"
+    "JemmaZZ"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/JemmaZZ/ConveyAway"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "MIT",
+  "icon": "assets/conveyaway/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
-    ]
+      "com.jemmazz.conveyaway.ConveyAway"
+    ],
+	"client": [
+	  "com.jemmazz.conveyaway.client.ConveyAwayClient"
+	]
   },
   "mixins": [
-    "modid.mixins.json"
+    "conveyaway.mixins.json"
   ],
 
   "depends": {
@@ -33,6 +36,5 @@
     "java": ">=16"
   },
   "suggests": {
-    "another-mod": "*"
   }
 }
