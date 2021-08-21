@@ -30,7 +30,7 @@ public class ConveyorBlockEntity extends BlockEntity implements BlockEntityClien
 
     @Override
     public NbtCompound toClientTag(NbtCompound tag) {
-        return null;
+        return tag;
     }
 
     @Override
