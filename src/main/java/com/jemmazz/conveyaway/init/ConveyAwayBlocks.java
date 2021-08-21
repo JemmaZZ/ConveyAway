@@ -3,6 +3,7 @@ package com.jemmazz.conveyaway.init;
 import com.jemmazz.conveyaway.ConveyAway;
 import com.jemmazz.conveyaway.api.Conveyor;
 import com.jemmazz.conveyaway.blocks.ConveyorBlock;
+import com.jemmazz.conveyaway.blocks.VerticalConveyorBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -18,6 +19,8 @@ import net.minecraft.util.registry.Registry;
 
 public class ConveyAwayBlocks {
     public static ConveyorBlock CONVEYOR = register("conveyor", new ConveyorBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.METAL).nonOpaque(), 16));
+    public static ConveyorBlock VERTICAL_CONVEYOR = register("vertical_conveyor", new VerticalConveyorBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.METAL).nonOpaque(), 16));
+
     public static ConveyorBlock FAST_CONVEYOR = register("fast_conveyor", new ConveyorBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.METAL).nonOpaque(), 8));
     public static ConveyorBlock EXPRESS_CONVEYOR = register("express_conveyor", new ConveyorBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.METAL).nonOpaque(), 4));
     public static ConveyorBlock EXTREME_CONVEYOR = register("extreme_conveyor", new ConveyorBlock(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.METAL).nonOpaque(), 2));

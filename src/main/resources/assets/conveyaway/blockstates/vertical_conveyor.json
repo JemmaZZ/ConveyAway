@@ -1,0 +1,40 @@
+{
+  "multipart": [
+	{   "when": { "facing": "north" },
+		"apply": { "model": "conveyaway:block/conveyor_vertical" }
+	},
+	{   "when": { "facing": "east" },
+		"apply": { "model": "conveyaway:block/conveyor_vertical", "y": 90 }
+	},
+	{   "when": { "facing": "south" },
+		"apply": { "model": "conveyaway:block/conveyor_vertical", "y": 180 }
+	},
+	{   "when": { "facing": "west" },
+		"apply": { "model": "conveyaway:block/conveyor_vertical", "y": 270 }
+	},
+	{   "when": { "facing": "north", "back": "true" },
+		"apply": { "model": "conveyaway:block/conveyor" }
+	},
+	{   "when": { "facing": "east", "back": "true" },
+		"apply": { "model": "conveyaway:block/conveyor", "y": 90 }
+	},
+	{   "when": { "facing": "south", "back": "true" },
+		"apply": { "model": "conveyaway:block/conveyor", "y": 180 }
+	},
+	{   "when": { "facing": "west", "back": "true" },
+		"apply": { "model": "conveyaway:block/conveyor", "y": 270 }
+	},
+	{   "when": { "facing": "north", "top": "false" },
+		"apply": { "model": "conveyaway:block/conveyor_vertical_top" }
+	},
+	{   "when": { "facing": "east", "top": "false" },
+		"apply": { "model": "conveyaway:block/conveyor_vertical_top", "y": 90 }
+	},
+	{   "when": { "facing": "south", "top": "false" },
+		"apply": { "model": "conveyaway:block/conveyor_vertical_top", "y": 180 }
+	},
+	{   "when": { "facing": "west", "top": "false" },
+		"apply": { "model": "conveyaway:block/conveyor_vertical_top", "y": 270 }
+	}
+  ]
+}

@@ -12,9 +12,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -32,6 +36,11 @@ public class ConveyorBlock extends BlockWithEntity implements BlockEntityProvide
         super(settings);
 
         this.speed = speed;
+    }
+
+    @Override
+    public boolean isFlat() {
+        return true;
     }
 
     @Override
@@ -70,6 +79,35 @@ public class ConveyorBlock extends BlockWithEntity implements BlockEntityProvide
     public int getComparatorOutput(BlockState blockState, World world, BlockPos blockPos) {
 //        return ((ConveyorBlockEntity) world.getBlockEntity(blockPos)).isEmpty() ? 0 : 15;
         return 0;
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        ConveyorBlockEntity blockEntity = (ConveyorBlockEntity) world.getBlockEntity(pos);
+
+        if (!player.getStackInHand(hand).isEmpty() && Block.getBlockFromItem(player.getStackInHand(hand).getItem()) instanceof Conveyor) {
+            return ActionResult.PASS;
+        } else if (!player.getStackInHand(hand).isEmpty() && blockEntity.isEmpty()) {
+            if (!world.isClient()) {
+                ItemStack heldStack = player.getStackInHand(hand).copy();
+                heldStack.setCount(1);
+                blockEntity.give(heldStack);
+
+                player.getStackInHand(hand).decrement(1);
+            }
+
+            return ActionResult.SUCCESS;
+        } else if (!blockEntity.isEmpty()) {
+            if (!world.isClient()) {
+                player.getInventory().offerOrDrop(blockEntity.getStack());
+
+                blockEntity.give(ItemStack.EMPTY);
+            }
+
+            return ActionResult.SUCCESS;
+        }
+
+        return ActionResult.PASS;
     }
 
     @Override

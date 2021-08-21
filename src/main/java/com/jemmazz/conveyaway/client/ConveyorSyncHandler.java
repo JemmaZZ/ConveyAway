@@ -8,8 +8,13 @@ public class ConveyorSyncHandler {
 
     public static void init() {
         ClientTickEvents.START_WORLD_TICK.register(world -> {
-            prevPosition = position;
-            position += 1;
+            if (position < 15) {
+                prevPosition = position;
+                position += 1;
+            } else {
+                prevPosition = -1;
+                position = 0;
+            }
         });
     }
 }

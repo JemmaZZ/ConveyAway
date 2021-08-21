@@ -6,6 +6,9 @@ import net.minecraft.util.Identifier;
 public interface Conveyor {
     BooleanProperty BACK = BooleanProperty.of("back");
     BooleanProperty FRONT = BooleanProperty.of("front");
+    BooleanProperty TOP = BooleanProperty.of("top");
+
+    boolean isFlat();
 
     /**
      * Gets the speed of a conveyor in ticks/cycle.

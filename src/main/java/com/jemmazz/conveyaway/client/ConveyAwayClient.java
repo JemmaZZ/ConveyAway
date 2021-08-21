@@ -15,11 +15,13 @@ public class ConveyAwayClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModelLoadingRegistry.INSTANCE.registerModelProvider((resourceManager, consumer) -> {
             consumer.accept(new ModelIdentifier(new Identifier(ConveyAway.MODID, "roller"), ""));
+            consumer.accept(new ModelIdentifier(new Identifier(ConveyAway.MODID, "supports"), ""));
         });
 
         ConveyAwayBlocks.registerRenderLayers();
 
         BlockEntityRendererRegistry.INSTANCE.register(ConveyAwayBlockEntities.CONVEYOR, (blockEntityRenderDispatcher -> new ConveyorBlockEntityRenderer()));
+        BlockEntityRendererRegistry.INSTANCE.register(ConveyAwayBlockEntities.VERTICAL_CONVEYOR, (blockEntityRenderDispatcher -> new ConveyorBlockEntityRenderer()));
 
         ConveyorSyncHandler.init();
     }
