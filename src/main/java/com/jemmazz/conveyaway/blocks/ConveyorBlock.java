@@ -25,8 +25,8 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class ConveyorBlock extends BlockWithEntity implements BlockEntityProvider, Conveyor {
-    private Identifier id;
     private final int speed;
+    private Identifier id;
 
     public ConveyorBlock(Settings settings, int speed) {
         super(settings);

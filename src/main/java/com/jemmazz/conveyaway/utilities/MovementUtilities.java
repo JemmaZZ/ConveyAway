@@ -5,11 +5,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public class MovementUtilities {
-	public static void pushEntity(Entity entity, BlockPos pos, float speed, Direction facing) {
-		pushEntity(entity, pos, speed, facing, true);
-	}
+    public static void pushEntity(Entity entity, BlockPos pos, float speed, Direction facing) {
+        pushEntity(entity, pos, speed, facing, true);
+    }
 
-	public static void pushEntity(Entity entity, BlockPos pos, float speed, Direction facing, boolean shouldCenter) {
+    public static void pushEntity(Entity entity, BlockPos pos, float speed, Direction facing, boolean shouldCenter) {
         double motionX = entity.getVelocity().getX();
         double motionZ = entity.getVelocity().getZ();
 
@@ -25,22 +25,22 @@ public class MovementUtilities {
             entity.addVelocity(0, 0, -speed / 2);
         }
 
-		if (shouldCenter) {
-			centerEntity(entity, pos, speed, facing);
-		}
-	}
+        if (shouldCenter) {
+            centerEntity(entity, pos, speed, facing);
+        }
+    }
 
-	private static void centerEntity(Entity entity, BlockPos pos, float speed, Direction facing) {
-		if (speed * facing.getOffsetX() > 0 || speed * facing.getOffsetX() < 0) {
-		    centerZ(entity, pos);
-		}
+    private static void centerEntity(Entity entity, BlockPos pos, float speed, Direction facing) {
+        if (speed * facing.getOffsetX() > 0 || speed * facing.getOffsetX() < 0) {
+            centerZ(entity, pos);
+        }
 
-		if (speed * facing.getOffsetZ() > 0 || speed * facing.getOffsetZ() < 0) {
-			centerX(entity, pos);
-		}
-	}
+        if (speed * facing.getOffsetZ() > 0 || speed * facing.getOffsetZ() < 0) {
+            centerX(entity, pos);
+        }
+    }
 
-	private static void centerZ(Entity entity, BlockPos pos) {
+    private static void centerZ(Entity entity, BlockPos pos) {
         if (entity.getZ() > pos.getZ() + .55) {
             entity.addVelocity(0, 0, -0.1F);
         } else if (entity.getZ() < pos.getZ() + .45) {

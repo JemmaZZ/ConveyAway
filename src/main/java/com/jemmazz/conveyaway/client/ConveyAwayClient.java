@@ -19,7 +19,7 @@ public class ConveyAwayClient implements ClientModInitializer {
 
         ConveyAwayBlocks.registerRenderLayers();
 
-		BlockEntityRendererRegistry.INSTANCE.register(ConveyAwayBlockEntities.CONVEYOR, (blockEntityRenderDispatcher -> new ConveyorBlockEntityRenderer()));
+        BlockEntityRendererRegistry.INSTANCE.register(ConveyAwayBlockEntities.CONVEYOR, (blockEntityRenderDispatcher -> new ConveyorBlockEntityRenderer()));
 
         ConveyorSyncHandler.init();
     }

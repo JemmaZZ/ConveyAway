@@ -1,6 +1,5 @@
 package com.jemmazz.conveyaway.blocks.entities;
 
-import com.jemmazz.conveyaway.blocks.ConveyorBlock;
 import com.jemmazz.conveyaway.init.ConveyAwayBlockEntities;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.rendering.data.v1.RenderAttachmentBlockEntity;

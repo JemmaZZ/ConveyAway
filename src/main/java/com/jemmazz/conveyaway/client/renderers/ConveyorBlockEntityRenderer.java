@@ -1,19 +1,22 @@
 package com.jemmazz.conveyaway.client.renderers;
 
-import com.jemmazz.conveyaway.ConveyAway;
 import com.jemmazz.conveyaway.api.Conveyor;
-import com.jemmazz.conveyaway.client.ConveyorSyncHandler;
 import com.jemmazz.conveyaway.blocks.entities.ConveyorBlockEntity;
+import com.jemmazz.conveyaway.client.ConveyorSyncHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.math.Vec3f;
 
 public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<ConveyorBlockEntity> {
     @Override
