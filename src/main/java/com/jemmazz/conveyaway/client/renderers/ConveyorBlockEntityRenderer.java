@@ -5,6 +5,7 @@ import com.jemmazz.conveyaway.api.Conveyor;
 import com.jemmazz.conveyaway.client.ConveyorSyncHandler;
 import com.jemmazz.conveyaway.blocks.entities.ConveyorBlockEntity;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.model.BakedModel;
@@ -13,7 +14,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.Registry;
 
 public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<ConveyorBlockEntity> {
     @Override
@@ -46,16 +46,16 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
 
         // top
         matrices.translate(0, 0.0001, 0);
-        vertices.vertex(modelMatrix, 0, height, 0).color(255, 255, 255, 255).texture(0, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
-        vertices.vertex(modelMatrix, 0, height, length).color(255, 255, 255, 255).texture(0, length + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
+        vertices.vertex(modelMatrix, 0, height, 0).color(255, 255, 255, 255).texture(0 + 1.5F, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
+        vertices.vertex(modelMatrix, 0, height, length).color(255, 255, 255, 255).texture(0 + 1.5F, length + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
         vertices.vertex(modelMatrix, width, height, length).color(255, 255, 255, 255).texture(width, length + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
         vertices.vertex(modelMatrix, width, height, 0).color(255, 255, 255, 255).texture(width, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
         matrices.translate(0, -0.0001, 0);
 
         // bottom
         matrices.translate(0, -0.0001, 0);
-        vertices.vertex(modelMatrix, width, 0, 0).color(255, 255, 255, 255).texture(-width, length + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
-        vertices.vertex(modelMatrix, width, 0, length).color(255, 255, 255, 255).texture(-width, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
+        vertices.vertex(modelMatrix, width, 0, 0).color(255, 255, 255, 255).texture(-width + 1.5F, length + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
+        vertices.vertex(modelMatrix, width, 0, length).color(255, 255, 255, 255).texture(-width + 1.5F, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
         vertices.vertex(modelMatrix, 0, 0, length).color(255, 255, 255, 255).texture(0, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
         vertices.vertex(modelMatrix, 0, 0, 0).color(255, 255, 255, 255).texture(0, length + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0,0,1).next();
         matrices.translate(0, 0.0001, 0);
@@ -65,8 +65,8 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 matrices.translate(0, 0, 0.0001);
                 // north
                 vertices.vertex(modelMatrix, width, height, length).color(255, 255, 255, 255).texture(width, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
-                vertices.vertex(modelMatrix, 0, height, length).color(255, 255, 255, 255).texture(0, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
-                vertices.vertex(modelMatrix, 0, 0, length).color(255, 255, 255, 255).texture(0, height + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
+                vertices.vertex(modelMatrix, 0, height, length).color(255, 255, 255, 255).texture(0 + 1.5F, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
+                vertices.vertex(modelMatrix, 0, 0, length).color(255, 255, 255, 255).texture(0 + 1.5F, height + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
                 vertices.vertex(modelMatrix, width, 0, length).color(255, 255, 255, 255).texture(width, height + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
                 matrices.translate(0, 0, -0.0001);
             }
@@ -75,25 +75,27 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 matrices.translate(0, 0, -0.0001);
                 // south
                 vertices.vertex(modelMatrix, width, 0, 0).color(255, 255, 255, 255).texture(width, -height + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
-                vertices.vertex(modelMatrix, 0, 0, 0).color(255, 255, 255, 255).texture(0, -height + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
-                vertices.vertex(modelMatrix, 0, height, 0).color(255, 255, 255, 255).texture(0, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
+                vertices.vertex(modelMatrix, 0, 0, 0).color(255, 255, 255, 255).texture(0 + 1.5F, -height + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
+                vertices.vertex(modelMatrix, 0, height, 0).color(255, 255, 255, 255).texture(0 + 1.5F, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
                 vertices.vertex(modelMatrix, width, height, 0).color(255, 255, 255, 255).texture(width, 0 + deltaPosition).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 0, 1).next();
                 matrices.translate(0, 0, 0.0001);
             }
         }
 
-        BakedModel model = MinecraftClient.getInstance().getBakedModelManager().getModel(new ModelIdentifier(new Identifier(ConveyAway.MODID, "roller"),  ""));
+        //VertexConsumer verticesRoller = vertexConsumers.getBuffer(RenderLayer.getEntitySolid(ConveyAway.id("textures/block/conveyor_metal.png")));
+        //VertexConsumer verticesRoller = vertexConsumers.getBuffer(RenderLayer.getEntitySolid(ConveyAway.id("textures/block/conveyor_metal.png")));
 
-        matrices.translate(8F / 16F, 4F / 16F, 12F / 16F);
+        ModelPart.Cuboid cuboid = new ModelPart.Cuboid(8, 21, 0F, 0F, 0F, 16.0F, 3.0F, 3.0F,0,0,0,false,16,16);
+        matrices.translate(0, 2.5f / 16f, 2.5F / 16F);
+        matrices.translate(0, 1.5F / 16, 1.5F / 16);
         matrices.multiply(Vec3f.NEGATIVE_X.getDegreesQuaternion(deltaPosition * 180));
-        matrices.translate(-8F / 16F, -4F / 16F, -12F / 16F);
-        MinecraftClient.getInstance().getBlockRenderManager().getModelRenderer().render(matrices.peek(), vertexConsumers.getBuffer(RenderLayer.getCutout()), null, model, blockEntity.getPos().getX(), blockEntity.getPos().getY(), blockEntity.getPos().getZ(), light, OverlayTexture.DEFAULT_UV);
+        matrices.translate(0, -1.5F / 16, -1.5F / 16);
+        cuboid.renderCuboid(matrices.peek(), vertices, light, overlay, 1, 1, 1, 1);
         matrices.multiply(Vec3f.NEGATIVE_X.getDegreesQuaternion(-deltaPosition * 180));
 
-
-        matrices.translate(0, 0, -8F / 16F);
+        matrices.translate(0, 0, 8F / 16F);
         matrices.multiply(Vec3f.NEGATIVE_X.getDegreesQuaternion(deltaPosition * 180));
-        MinecraftClient.getInstance().getBlockRenderManager().getModelRenderer().render(matrices.peek(), vertexConsumers.getBuffer(RenderLayer.getCutout()), null, model, blockEntity.getPos().getX(), blockEntity.getPos().getY(), blockEntity.getPos().getZ(), light, OverlayTexture.DEFAULT_UV);
+        cuboid.renderCuboid(matrices.peek(), vertices, light, overlay, 1, 1, 1, 1);
         matrices.pop();
     }
 }
