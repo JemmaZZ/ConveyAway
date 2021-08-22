@@ -1,6 +1,5 @@
 package com.jemmazz.conveyaway.blocks.entities;
 
-import com.jemmazz.conveyaway.ConveyAway;
 import com.jemmazz.conveyaway.api.Conveyor;
 import com.jemmazz.conveyaway.init.ConveyAwayBlockEntities;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
@@ -22,6 +21,10 @@ public class VerticalConveyorBlockEntity extends ConveyorBlockEntity implements 
 
     public VerticalConveyorBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ConveyAwayBlockEntities.VERTICAL_CONVEYOR, blockPos, blockState);
+    }
+
+    public static void tick(World world, BlockPos pos, BlockState state, VerticalConveyorBlockEntity be) {
+        be.tick(world, pos, state);
     }
 
     @Override
@@ -53,10 +56,6 @@ public class VerticalConveyorBlockEntity extends ConveyorBlockEntity implements 
             position = 0;
             prevPosition = 0;
         }
-    }
-
-    public static void tick(World world, BlockPos pos, BlockState state, VerticalConveyorBlockEntity be) {
-        be.tick(world, pos, state);
     }
 
     public int getVerticalPosition() {

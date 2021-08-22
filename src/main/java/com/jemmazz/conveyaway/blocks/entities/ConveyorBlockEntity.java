@@ -1,15 +1,11 @@
 package com.jemmazz.conveyaway.blocks.entities;
 
-import com.jemmazz.conveyaway.ConveyAway;
 import com.jemmazz.conveyaway.api.Conveyor;
 import com.jemmazz.conveyaway.init.ConveyAwayBlockEntities;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
-import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
-import net.fabricmc.fabric.impl.transfer.item.InventoryStorageImpl;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
@@ -23,10 +19,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class ConveyorBlockEntity extends BlockEntity implements BlockEntityClientSerializable, SingularStackInventory {
-    private Conveyor conveyor;
     protected int position = 0;
     protected int prevPosition = 0;
-    private DefaultedList<ItemStack> stacks;
+    private final Conveyor conveyor;
+    private final DefaultedList<ItemStack> stacks;
 
     public ConveyorBlockEntity(BlockEntityType type, BlockPos blockPos, BlockState blockState) {
         super(type, blockPos, blockState);
@@ -37,6 +33,10 @@ public class ConveyorBlockEntity extends BlockEntity implements BlockEntityClien
 
     public ConveyorBlockEntity(BlockPos blockPos, BlockState blockState) {
         this(ConveyAwayBlockEntities.CONVEYOR, blockPos, blockState);
+    }
+
+    public static void tick(World world, BlockPos pos, BlockState state, ConveyorBlockEntity be) {
+        be.tick(world, pos, state);
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
@@ -66,10 +66,6 @@ public class ConveyorBlockEntity extends BlockEntity implements BlockEntityClien
             position = 0;
             prevPosition = 0;
         }
-    }
-
-    public static void tick(World world, BlockPos pos, BlockState state, ConveyorBlockEntity be) {
-        be.tick(world, pos, state);
     }
 
     public void give(ItemStack stack) {

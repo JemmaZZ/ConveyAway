@@ -5,10 +5,12 @@ import com.jemmazz.conveyaway.api.Conveyor;
 import com.jemmazz.conveyaway.blocks.entities.ConveyorBlockEntity;
 import com.jemmazz.conveyaway.blocks.entities.VerticalConveyorBlockEntity;
 import com.jemmazz.conveyaway.client.ConveyorSyncHandler;
-import net.fabricmc.loader.util.sat4j.core.Vec;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformation;
@@ -20,51 +22,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3f;
-import software.bernie.shadowed.fasterxml.jackson.databind.annotation.JsonAppend;
 
 public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<ConveyorBlockEntity> {
-    @Override
-    public void render(ConveyorBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        Conveyor conveyor = (Conveyor) blockEntity.getCachedState().getBlock();
-        Direction facing = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
-        int speed = conveyor.getSpeed();
-
-        renderBelt(blockEntity, tickDelta, matrices, vertexConsumers, light, overlay);
-
-        matrices.push();
-        if (!blockEntity.isEmpty()) {
-            float position = blockEntity.getPosition() / (speed * 1.0F);
-            float prevPosition = blockEntity.getPrevPosition() / (speed * 1.0F);
-            float deltaPosition = MathHelper.lerp(tickDelta, prevPosition, position);
-
-            matrices.translate(0.5, 0, 0.5);
-            if (conveyor.isFlat() || !conveyor.isFlat() && blockEntity.getCachedState().get(Conveyor.BACK)) {
-                matrices.translate(0, (12.0 / 16.0), 0);
-                if (!conveyor.isFlat())
-                    matrices.translate(-0.25, 0, 0);
-            } else
-                matrices.translate(-0.25, (8.0 / 16.0), 0);
-            matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(facing.asRotation()));
-            if (!conveyor.isFlat()) {
-                float verticalPosition = ((VerticalConveyorBlockEntity) blockEntity).getVerticalPosition() / (speed * 1.0f);
-                float prevVerticalPosition = ((VerticalConveyorBlockEntity) blockEntity).getPrevVerticalPosition() / (speed * 1.0f);
-                float verticalDeltaPosition = MathHelper.lerp(tickDelta, prevVerticalPosition, verticalPosition);
-
-                matrices.translate(0, verticalDeltaPosition, deltaPosition);
-                MinecraftClient.getInstance().getItemRenderer().renderItem(blockEntity.getStack(), ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, 0);
-
-                matrices.translate(-0.5, -1.25, -0.5);
-                VertexConsumer vertices = vertexConsumers.getBuffer(RenderLayer.getEntitySolid(ConveyAway.id("textures/block/supports.png")));
-                BakedModel model = MinecraftClient.getInstance().getBakedModelManager().getModel(new ModelIdentifier(ConveyAway.id("supports"), ""));
-                MinecraftClient.getInstance().getBlockRenderManager().getModelRenderer().render(matrices.peek(), vertices, null, model, blockEntity.getPos().getX(), blockEntity.getPos().getY(), blockEntity.getPos().getZ(), light, OverlayTexture.DEFAULT_UV);
-            } else {
-                matrices.translate(0, 0, deltaPosition);
-                MinecraftClient.getInstance().getItemRenderer().renderItem(blockEntity.getStack(), ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, 0);
-            }
-        }
-        matrices.pop();
-    }
-
     public static void renderBelt(ConveyorBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         Conveyor conveyor = (Conveyor) blockEntity.getCachedState().getBlock();
         Direction facing = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
@@ -224,6 +183,48 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 matrices.translate(0, 0, 8F / 16F);
                 matrices.multiply(Vec3f.NEGATIVE_X.getDegreesQuaternion(deltaPosition * 180));
                 cuboid.renderCuboid(matrices.peek(), vertices, light, overlay, 1, 1, 1, 1);
+            }
+        }
+        matrices.pop();
+    }
+
+    @Override
+    public void render(ConveyorBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        Conveyor conveyor = (Conveyor) blockEntity.getCachedState().getBlock();
+        Direction facing = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
+        int speed = conveyor.getSpeed();
+
+        renderBelt(blockEntity, tickDelta, matrices, vertexConsumers, light, overlay);
+
+        matrices.push();
+        if (!blockEntity.isEmpty()) {
+            float position = blockEntity.getPosition() / (speed * 1.0F);
+            float prevPosition = blockEntity.getPrevPosition() / (speed * 1.0F);
+            float deltaPosition = MathHelper.lerp(tickDelta, prevPosition, position);
+
+            matrices.translate(0.5, 0, 0.5);
+            if (conveyor.isFlat() || !conveyor.isFlat() && blockEntity.getCachedState().get(Conveyor.BACK)) {
+                matrices.translate(0, (12.0 / 16.0), 0);
+                if (!conveyor.isFlat())
+                    matrices.translate(-0.25, 0, 0);
+            } else
+                matrices.translate(-0.25, (8.0 / 16.0), 0);
+            matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(facing.asRotation()));
+            if (!conveyor.isFlat()) {
+                float verticalPosition = ((VerticalConveyorBlockEntity) blockEntity).getVerticalPosition() / (speed * 1.0f);
+                float prevVerticalPosition = ((VerticalConveyorBlockEntity) blockEntity).getPrevVerticalPosition() / (speed * 1.0f);
+                float verticalDeltaPosition = MathHelper.lerp(tickDelta, prevVerticalPosition, verticalPosition);
+
+                matrices.translate(0, verticalDeltaPosition, deltaPosition);
+                MinecraftClient.getInstance().getItemRenderer().renderItem(blockEntity.getStack(), ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, 0);
+
+                matrices.translate(-0.5, -1.25, -0.5);
+                VertexConsumer vertices = vertexConsumers.getBuffer(RenderLayer.getEntitySolid(ConveyAway.id("textures/block/supports.png")));
+                BakedModel model = MinecraftClient.getInstance().getBakedModelManager().getModel(new ModelIdentifier(ConveyAway.id("supports"), ""));
+                MinecraftClient.getInstance().getBlockRenderManager().getModelRenderer().render(matrices.peek(), vertices, null, model, blockEntity.getPos().getX(), blockEntity.getPos().getY(), blockEntity.getPos().getZ(), light, OverlayTexture.DEFAULT_UV);
+            } else {
+                matrices.translate(0, 0, deltaPosition);
+                MinecraftClient.getInstance().getItemRenderer().renderItem(blockEntity.getStack(), ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, 0);
             }
         }
         matrices.pop();
