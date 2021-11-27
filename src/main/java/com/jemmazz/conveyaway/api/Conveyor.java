@@ -3,10 +3,11 @@ package com.jemmazz.conveyaway.api;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 
-public interface Conveyor {
-    BooleanProperty BACK = BooleanProperty.of("back");
-    BooleanProperty FRONT = BooleanProperty.of("front");
-    BooleanProperty TOP = BooleanProperty.of("top");
+public interface Conveyor
+{
+    BooleanProperty BACK = BooleanProperty.of( "back" );
+    BooleanProperty FRONT = BooleanProperty.of( "front" );
+    BooleanProperty TOP = BooleanProperty.of( "top" );
 
     boolean isFlat();
 
@@ -15,7 +16,7 @@ public interface Conveyor {
      *
      * @return Speed of conveyor.
      */
-    int getSpeed();
+    double getSpeed();
 
     /**
      * Used for grabbing the texture.
@@ -29,5 +30,5 @@ public interface Conveyor {
      *
      * @param id Identifier of the conveyor.
      */
-    void setId(Identifier id);
+    void setId( Identifier id );
 }

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "conveyaway:conveyor",
+    "conveyaway:fast_conveyor",
+    "conveyaway:express_conveyor",
+	"conveyaway:extreme_conveyor",
+	"conveyaway:vertical_conveyor",
+	"conveyaway:vertical_fast_conveyor",
+	"conveyaway:vertical_express_conveyor",
+	"conveyaway:vertical_extreme_conveyor"
+  ]
+}

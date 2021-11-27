@@ -11,22 +11,22 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import software.bernie.geckolib3.GeckoLib;
 
-public class ConveyAway implements ModInitializer {
+public class ConveyAway implements ModInitializer
+{
     public static final String MODID = "conveyaway";
-    public static final Logger LOGGER = LogManager.getLogger(MODID);
+    public static final Logger LOGGER = LogManager.getLogger( MODID );
 
-    public static ItemGroup generalItemGroup = FabricItemGroupBuilder.build(new Identifier(MODID, "general"), () -> new ItemStack(ConveyAwayBlocks.CONVEYOR));
+    public static ItemGroup generalItemGroup = FabricItemGroupBuilder.build( new Identifier( MODID, "general" ), () -> new ItemStack( ConveyAwayBlocks.CONVEYOR ) );
 
-    public static Identifier id(String name) {
-        return new Identifier(MODID, name);
+    public static Identifier id( String name )
+    {
+        return new Identifier( MODID, name );
     }
 
     @Override
-    public void onInitialize() {
-        GeckoLib.initialize();
-
+    public void onInitialize()
+    {
         ConveyAwayBlocks.init();
         ConveyAwayBlockEntities.init();
         ConveyAwayItems.init();
