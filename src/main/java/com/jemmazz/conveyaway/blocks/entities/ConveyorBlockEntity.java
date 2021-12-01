@@ -65,10 +65,6 @@ public class ConveyorBlockEntity extends BlockEntity implements SingularStackInv
                     }
                     nextConveyor.give( getStack() );
                     clear();
-                    if( !world.isClient() )
-                    {
-                        sendPacket( (ServerWorld) world, writeToNbt( new NbtCompound() ) );
-                    }
                     //nextConveyor.setPrevPosition(-1);
                 }
             }
@@ -90,10 +86,17 @@ public class ConveyorBlockEntity extends BlockEntity implements SingularStackInv
         prevPosition = -1;
         position = 0;
         setStack( stack );
-        if( !world.isClient() )
+    }
+
+    @Override
+    public void setStack( int slot, ItemStack stack )
+    {
+        getItems().set( slot, stack );
+        if( stack.getCount() > getMaxCountPerStack() )
         {
-            sendPacket( (ServerWorld) world, writeToNbt( new NbtCompound() ) );
+            stack.setCount( getMaxCountPerStack() );
         }
+        markDirty();
     }
 
     @Override
@@ -135,6 +138,15 @@ public class ConveyorBlockEntity extends BlockEntity implements SingularStackInv
     public Identifier getId()
     {
         return conveyor.getId();
+    }
+
+    @Override
+    public void markDirty()
+    {
+        super.markDirty();
+        if (world instanceof ServerWorld) {
+            sendPacket( (ServerWorld) world, writeToNbt( new NbtCompound() ) );
+        }
     }
 
     protected void sendPacket( ServerWorld w, NbtCompound tag )

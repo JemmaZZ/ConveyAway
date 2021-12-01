@@ -3,6 +3,7 @@ package com.jemmazz.conveyaway.client;
 import com.jemmazz.conveyaway.ConveyAway;
 import com.jemmazz.conveyaway.client.renderers.ConveyorBlockEntityRenderer;
 import com.jemmazz.conveyaway.client.renderers.FunnelBlockEntityRenderer;
+import com.jemmazz.conveyaway.client.renderers.InserterBlockEntityRenderer;
 import com.jemmazz.conveyaway.init.ConveyAwayBlockEntities;
 import com.jemmazz.conveyaway.init.ConveyAwayBlocks;
 import net.fabricmc.api.ClientModInitializer;
@@ -25,6 +26,7 @@ public class ConveyAwayClient implements ClientModInitializer
         BlockEntityRendererRegistry.register( ConveyAwayBlockEntities.CONVEYOR, ctx -> new ConveyorBlockEntityRenderer() );
         BlockEntityRendererRegistry.register( ConveyAwayBlockEntities.VERTICAL_CONVEYOR, ctx -> new ConveyorBlockEntityRenderer() );
         BlockEntityRendererRegistry.register( ConveyAwayBlockEntities.FUNNEL, ctx -> new FunnelBlockEntityRenderer() );
+        BlockEntityRendererRegistry.register( ConveyAwayBlockEntities.INSERTER, ctx -> new InserterBlockEntityRenderer() );
 
         ConveyorSyncHandler.init();
     }

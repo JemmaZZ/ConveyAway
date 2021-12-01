@@ -3,6 +3,7 @@ package com.jemmazz.conveyaway.init;
 import com.jemmazz.conveyaway.ConveyAway;
 import com.jemmazz.conveyaway.blocks.entities.ConveyorBlockEntity;
 import com.jemmazz.conveyaway.blocks.entities.FunnelBlockEntity;
+import com.jemmazz.conveyaway.blocks.entities.InserterBlockEntity;
 import com.jemmazz.conveyaway.blocks.entities.VerticalConveyorBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
@@ -17,7 +18,7 @@ public class ConveyAwayBlockEntities
 
     public static BlockEntityType FUNNEL = register( "funnel", create( FunnelBlockEntity::new, ConveyAwayBlocks.FUNNEL ) );
 
-
+    public static BlockEntityType INSERTER = register( "inserter", create( InserterBlockEntity::new, ConveyAwayBlocks.INSERTER, ConveyAwayBlocks.INSERTER_FAST ) );
 
     public static void init()
     {

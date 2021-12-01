@@ -4,6 +4,7 @@ import com.jemmazz.conveyaway.ConveyAway;
 import com.jemmazz.conveyaway.api.Conveyor;
 import com.jemmazz.conveyaway.blocks.ConveyorBlock;
 import com.jemmazz.conveyaway.blocks.FunnelBlock;
+import com.jemmazz.conveyaway.blocks.InserterBlock;
 import com.jemmazz.conveyaway.blocks.VerticalConveyorBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -32,6 +33,9 @@ public class ConveyAwayBlocks
 
     public static FunnelBlock FUNNEL = register( "funnel", new FunnelBlock( FabricBlockSettings.copyOf( Blocks.STONE ).sounds( BlockSoundGroup.METAL ).nonOpaque(), 3 ) );
 
+    public static InserterBlock INSERTER = register("inserter", new InserterBlock("normal", 12, FabricBlockSettings.copy(Blocks.STONE).nonOpaque()));
+    public static InserterBlock INSERTER_FAST = register("inserter_fast", new InserterBlock("fast", 6, FabricBlockSettings.copy(Blocks.STONE).nonOpaque()));
+
     public static void init()
     {
 
@@ -41,8 +45,6 @@ public class ConveyAwayBlocks
     public static void registerRenderLayers()
     {
         BlockRenderLayerMap.INSTANCE.putBlocks( RenderLayer.getTranslucent(), FUNNEL );
-
-        //        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), CATWALK, CATWALK_STAIRS);
     }
 
     private static BlockItem createBlockItem( Block block )

@@ -1,6 +1,7 @@
 package com.jemmazz.conveyaway.blocks;
 
 import com.jemmazz.conveyaway.api.Conveyor;
+import com.jemmazz.conveyaway.blocks.entities.ConveyorBlockEntity;
 import com.jemmazz.conveyaway.blocks.entities.FunnelBlockEntity;
 import com.jemmazz.conveyaway.init.ConveyAwayBlockEntities;
 import net.minecraft.block.*;
@@ -15,6 +16,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -74,6 +76,19 @@ public class FunnelBlock extends BlockWithEntity implements Conveyor
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker( World world, BlockState state, BlockEntityType<T> type )
     {
         return checkType( type, ConveyAwayBlockEntities.FUNNEL, ( world1, pos, state1, be ) -> FunnelBlockEntity.tick( world1, pos, state1, (FunnelBlockEntity) be ) );
+    }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!state.isOf(newState.getBlock())) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof ConveyorBlockEntity ) {
+                ItemScatterer.spawn(world, pos, (ConveyorBlockEntity)blockEntity);
+                world.updateComparators(pos, this);
+            }
+
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
     }
 
     @Override
