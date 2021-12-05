@@ -1,9 +1,5 @@
-# Fabric Example Mod
+# Conveyance
 
-## Setup
+The successor to Logistical Automation, made specifically for Fabric. Now updated to 1.18.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+### THIS IS THE NEW REPO PLEASE GO TO [HERE](https://github.com/JemmaZZ/Conveyance_OLD) TO VIEW THE OLD CODE.
