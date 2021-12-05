@@ -1,0 +1,14 @@
+{
+  "itemGroup.conveyance.general": "Conveyance",
+  "block.conveyance.conveyor": "Conveyor",
+  "block.conveyance.fast_conveyor": "Fast Conveyor",
+  "block.conveyance.express_conveyor": "Express Conveyor",
+  "block.conveyance.extreme_conveyor": "Extreme Conveyor",
+  "block.conveyance.vertical_conveyor": "Vertical Conveyor",
+  "block.conveyance.vertical_fast_conveyor": "Fast Vertical Conveyor",
+  "block.conveyance.vertical_express_conveyor": "Express Vertical Conveyor",
+  "block.conveyance.vertical_extreme_conveyor": "Extreme Vertical Conveyor",
+  "block.conveyance.funnel": "Funnel",
+  "block.conveyance.inserter": "Inserter",
+  "block.conveyance.fast_inserter": "Fast Inserter"
+}

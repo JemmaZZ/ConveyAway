@@ -18,6 +18,10 @@ repositories {
 	maven { url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com/releases/" }
+	maven {
+			name = "Quilt"
+			url = "https://maven.quiltmc.org/repository/snapshot"
+		}
 }
 
 dependencies {
@@ -34,6 +38,8 @@ dependencies {
     modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	
 	modRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
+	
+	//modImplementation include("org.quiltmc.qsl.data:tags:1.0.0+1.18-SNAPSHOT")
 }
 
 processResources {

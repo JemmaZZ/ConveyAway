@@ -1,0 +1,146 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"particle": "conveyance:block/conveyor_side",
+		"side": "conveyance:block/conveyor_side",
+		"conveyor": "conveyance:block/conveyor",
+		"metal": "conveyance:block/conveyor_metal"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 1, 16],
+			"faces": {
+				"north": {"uv": [0, 7, 8, 8], "texture": "#conveyor"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#side"},
+				"south": {"uv": [0, 15, 8, 16], "texture": "#conveyor"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#side"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#side"},
+				"down": {"uv": [0, 0, 8, 16], "texture": "#conveyor"}
+			}
+		},
+		{
+			"from": [1, 1, 1],
+			"to": [15, 7, 15],
+			"faces": {
+				"north": {"uv": [1, 0, 15, 6], "texture": "#side"},
+				"east": {"uv": [0, 0, 14, 6], "texture": "#side"},
+				"south": {"uv": [1, 0, 15, 6], "texture": "#side"},
+				"west": {"uv": [0, 0, 14, 6], "texture": "#side"},
+				"up": {"uv": [0, 0, 14, 14], "texture": "#side"},
+				"down": {"uv": [0, 0, 14, 14], "texture": "#side"}
+			}
+		},
+		{
+			"from": [0, 7, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {"uv": [0, 15, 8, 16], "texture": "#conveyor"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#side"},
+				"south": {"uv": [0, 15, 8, 16], "texture": "#conveyor"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#side"},
+				"up": {"uv": [0, 0, 8, 16], "texture": "#conveyor"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#side"}
+			}
+		},
+		{
+			"from": [0, 1, 0],
+			"to": [16, 7, 1],
+			"faces": {
+				"north": {"uv": [0, 9, 8, 15], "rotation": 180, "texture": "#conveyor"},
+				"east": {"uv": [0, 0, 1, 6], "texture": "#side"},
+				"south": {"uv": [0, 1, 16, 7], "texture": "#side"},
+				"west": {"uv": [0, 0, 1, 6], "texture": "#side"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#side"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#side"}
+			}
+		},
+		{
+			"from": [0, 1, 15],
+			"to": [16, 7, 16],
+			"faces": {
+				"north": {"uv": [0, 1, 16, 7], "texture": "#side"},
+				"east": {"uv": [0, 0, 1, 6], "texture": "#side"},
+				"south": {"uv": [0, 8, 8, 14], "texture": "#conveyor"},
+				"west": {"uv": [0, 0, 1, 6], "texture": "#side"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#side"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#side"}
+			}
+		},
+		{
+			"name": "roller",
+			"from": [0, 2.25, 10.25],
+			"to": [16, 5.75, 13.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 4.5, 4]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 3], "texture": "#metal"},
+				"east": {"uv": [0, 0, 16, 3], "texture": "#metal"},
+				"south": {"uv": [0, 0, 16, 3], "rotation": 180, "texture": "#metal"},
+				"west": {"uv": [6, 6, 9, 9], "rotation": 180, "texture": "#metal"},
+				"up": {"uv": [0, 0, 16, 3], "texture": "#metal"},
+				"down": {"uv": [0, 0, 16, 3], "texture": "#metal"}
+			}
+		},
+		{
+			"name": "roller",
+			"from": [0, 2.25, 2.25],
+			"to": [16, 5.75, 5.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 4.5, 4]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 3], "texture": "#metal"},
+				"east": {"uv": [0, 0, 16, 3], "texture": "#metal"},
+				"south": {"uv": [0, 0, 16, 3], "rotation": 180, "texture": "#metal"},
+				"west": {"uv": [6, 6, 9, 9], "rotation": 180, "texture": "#metal"},
+				"up": {"uv": [0, 0, 16, 3], "texture": "#metal"},
+				"down": {"uv": [0, 0, 16, 3], "texture": "#metal"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 80],
+			"translation": [-1.5, 1.5, 1.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 45, 80],
+			"translation": [-1.5, 1.5, 1.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 45, 0],
+			"translation": [0, 2, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "conveyor",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0, 1, 2]
+		},
+		3,
+		4,
+		5,
+		6
+	]
+}

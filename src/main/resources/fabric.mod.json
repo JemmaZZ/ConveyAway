@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "conveyaway",
+  "id": "conveyance",
   "version": "${version}",
 
-  "name": "ConveyAway",
+  "name": "Conveyance",
   "description": "Basically, convey.",
   "authors": [
     "JemmaZZ"
@@ -14,19 +14,19 @@
   },
 
   "license": "MIT",
-  "icon": "assets/conveyaway/icon.png",
+  "icon": "assets/conveyance/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.jemmazz.conveyaway.ConveyAway"
+      "com.jemmazz.conveyance.Conveyance"
     ],
 	"client": [
-	  "com.jemmazz.conveyaway.client.ConveyAwayClient"
+	  "com.jemmazz.conveyance.client.ConveyanceClient"
 	]
   },
   "mixins": [
-    "conveyaway.mixins.json"
+    "conveyance.mixins.json"
   ],
 
   "depends": {

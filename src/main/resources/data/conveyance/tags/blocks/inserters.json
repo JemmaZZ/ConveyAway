@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "conveyance:inserter",
+    "conveyance:fast_inserter"
+  ]
+}

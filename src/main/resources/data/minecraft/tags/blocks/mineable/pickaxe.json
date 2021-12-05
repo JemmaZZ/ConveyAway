@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#conveyaway:conveyors"
+    "#conveyance:conveyors",
+	"#conveyance:inserters",
+	"conveyance:funnel"
   ]
 }

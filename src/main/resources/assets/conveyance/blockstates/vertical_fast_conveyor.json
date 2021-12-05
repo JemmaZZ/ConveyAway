@@ -1,0 +1,64 @@
+{
+  "multipart": [
+	{   "when": { "facing": "north", "front": "false" },
+		"apply": { "model": "conveyance:block/conveyor_vertical" }
+	},
+	{   "when": { "facing": "east", "front": "false" },
+		"apply": { "model": "conveyance:block/conveyor_vertical", "y": 90 }
+	},
+	{   "when": { "facing": "south", "front": "false" },
+		"apply": { "model": "conveyance:block/conveyor_vertical", "y": 180 }
+	},
+	{   "when": { "facing": "west", "front": "false" },
+		"apply": { "model": "conveyance:block/conveyor_vertical", "y": 270 }
+	},
+	{   "when": { "facing": "north", "front": "true" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_front" }
+	},
+	{   "when": { "facing": "east", "front": "true" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_front", "y": 90 }
+	},
+	{   "when": { "facing": "south", "front": "true" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_front", "y": 180 }
+	},
+	{   "when": { "facing": "west", "front": "true" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_front", "y": 270 }
+	},
+	{   "when": { "facing": "north", "back": "true" },
+		"apply": { "model": "conveyance:block/conveyor" }
+	},
+	{   "when": { "facing": "east", "back": "true" },
+		"apply": { "model": "conveyance:block/conveyor", "y": 90 }
+	},
+	{   "when": { "facing": "south", "back": "true" },
+		"apply": { "model": "conveyance:block/conveyor", "y": 180 }
+	},
+	{   "when": { "facing": "west", "back": "true" },
+		"apply": { "model": "conveyance:block/conveyor", "y": 270 }
+	},
+	{   "when": { "facing": "north", "top": "false", "front": "false" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_top" }
+	},
+	{   "when": { "facing": "east", "top": "false", "front": "false" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_top", "y": 90 }
+	},
+	{   "when": { "facing": "south", "top": "false", "front": "false" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_top", "y": 180 }
+	},
+	{   "when": { "facing": "west", "top": "false", "front": "false" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_top", "y": 270 }
+	},
+	{   "when": { "facing": "north", "top": "false", "front": "true" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_top_front" }
+	},
+	{   "when": { "facing": "east", "top": "false", "front": "true" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_top_front", "y": 90 }
+	},
+	{   "when": { "facing": "south", "top": "false", "front": "true" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_top_front", "y": 180 }
+	},
+	{   "when": { "facing": "west", "top": "false", "front": "true" },
+		"apply": { "model": "conveyance:block/conveyor_vertical_top_front", "y": 270 }
+	}
+  ]
+}

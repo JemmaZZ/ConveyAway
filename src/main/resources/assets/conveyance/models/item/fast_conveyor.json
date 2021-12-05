@@ -1,0 +1,6 @@
+{
+    "parent": "conveyance:item/conveyor_base",
+	"textures": {
+		"conveyor": "conveyance:block/fast_conveyor"
+	}
+}

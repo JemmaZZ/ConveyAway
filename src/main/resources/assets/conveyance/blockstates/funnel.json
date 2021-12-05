@@ -1,0 +1,10 @@
+{
+  "multipart": [
+	{   "when": { "top": "false" },
+		"apply": { "model": "conveyance:block/funnel_top" }
+	},
+	{   "when": { "top": "true" },
+		"apply": { "model": "conveyance:block/funnel" }
+	}
+  ]
+}
