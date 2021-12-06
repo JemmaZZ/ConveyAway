@@ -78,6 +78,9 @@ public class ConveyorBlockEntity extends BlockEntity implements SingularStackInv
                 prevPosition = 0;
                 position = 0;
             }
+        } else {
+            prevPosition = 0;
+            position = 0;
         }
     }
 

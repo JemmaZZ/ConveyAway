@@ -73,7 +73,7 @@ public class VerticalConveyorBlock extends ConveyorBlock
             Block block = Block.getBlockFromItem( player.getStackInHand( hand ).getItem() );
             Conveyor conveyor = (Conveyor) block;
 
-            if( hit.getSide() == Direction.UP && conveyor.isFlat() && world.getBlockState( pos.offset( Direction.DOWN ) ).getBlock() instanceof Conveyor || !state.get( Conveyor.BACK ) && hit.getSide() == facing.getOpposite() && !conveyor.isFlat() )
+            if( ( hit.getSide() == Direction.UP || hit.getSide() == facing.getOpposite() ) && conveyor.isFlat() && world.getBlockState( pos.offset( Direction.DOWN ) ).getBlock() instanceof Conveyor || !state.get( Conveyor.BACK ) && hit.getSide() == facing.getOpposite() && !conveyor.isFlat() )
             {
                 if( world.isAir( pos.offset( facing ) ) )
                 {

@@ -230,8 +230,6 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
         matrices.push();
         if( !blockEntity.isEmpty() )
         {
-            //Conveyance.LOGGER.info( "Position: " + blockEntity.getPosition() + ", Prev Position: " + blockEntity.getPrevPosition() );
-
             double position = blockEntity.getPosition() / (speed * 1.0F);
             double prevPosition = blockEntity.getPrevPosition() / (speed * 1.0F);
             double deltaPosition = (prevPosition * (1.0 - tickDelta)) +  (position * tickDelta);
