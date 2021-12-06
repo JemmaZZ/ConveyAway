@@ -1,5 +1,6 @@
 package com.jemmazz.conveyance.blocks.entities;
 
+import com.jemmazz.conveyance.Conveyance;
 import com.jemmazz.conveyance.api.Conveyor;
 import com.jemmazz.conveyance.init.ConveyanceBlockEntities;
 import net.minecraft.block.BlockState;
@@ -16,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.lwjgl.system.CallbackI;
 
 public class ConveyorBlockEntity extends BlockEntity implements SingularStackInventory
 {
@@ -46,41 +48,36 @@ public class ConveyorBlockEntity extends BlockEntity implements SingularStackInv
     {
         Direction facing = getCachedState().get( Properties.HORIZONTAL_FACING );
 
-        if( !isEmpty() && getCachedState().get( Conveyor.FRONT ) && world.getBlockEntity( pos.offset( facing ) ) instanceof ConveyorBlockEntity nextConveyor )
+        if( getCachedState().get( Conveyor.FRONT ) && world.getBlockEntity( pos.offset( facing ) ) instanceof ConveyorBlockEntity nextConveyor )
         {
-            if( nextConveyor.isEmpty() || nextConveyor.getSpeed() == getSpeed() && nextConveyor.getPosition() > 0 && nextConveyor.getPosition() > getSpeed() / 4 )
+
+            if ( !isEmpty() )
             {
-                if( nextConveyor.getConveyor().isFlat() && position < getSpeed() || !nextConveyor.getConveyor().isFlat() && position < (getSpeed() - getSpeed() / 4) )
+                if ( nextConveyor.isEmpty() || nextConveyor.getSpeed() == getSpeed() && nextConveyor.getPosition() > 0 && nextConveyor.getPosition() > getSpeed() / 4 )
                 {
-                    prevPosition = position;
-                    position += 1;
-                }
-                else if( !nextConveyor.isEmpty() )
-                {
-                    prevPosition = position;
-                }
-                else if( nextConveyor.isEmpty() )
-                {
-                    prevPosition = -1;
-                    position = 0;
-                    nextConveyor.give( getStack() );
-                    clear();
-                    if( !nextConveyor.getConveyor().isFlat() )
+                    if( position < getSpeed() - 1 || position < (getSpeed() - getSpeed() / 4) - 1 )
                     {
-                        nextConveyor.prevPosition = -1;
+                        prevPosition = position;
+                        position += 1;
+                    }
+                    else if( !nextConveyor.isEmpty() )
+                    {
+                        prevPosition = position;
+                    }
+                    else if( nextConveyor.isEmpty() && position == getSpeed() - 1 )
+                    {
+                        nextConveyor.give( getStack() );
+                        clear();
                     }
                 }
-            }
-            else
-            {
+                else
+                {
+                    prevPosition = position;
+                }
+            } else {
                 prevPosition = 0;
                 position = 0;
             }
-        }
-        else
-        {
-            position = 0;
-            prevPosition = 0;
         }
     }
 
@@ -156,7 +153,8 @@ public class ConveyorBlockEntity extends BlockEntity implements SingularStackInv
     protected void sendPacket( ServerWorld w, NbtCompound tag )
     {
         tag.putString( "id", BlockEntityType.getId( getType() ).toString() );
-        tag.putBoolean( "clear", isEmpty() );
+//        tag.putBoolean( "clear", isEmpty() );
+        //tag.putDouble( "position", position );
         sendPacket( w, BlockEntityUpdateS2CPacket.create( this, blockEntity -> tag ) );
     }
 
@@ -187,8 +185,8 @@ public class ConveyorBlockEntity extends BlockEntity implements SingularStackInv
     {
         super.readNbt( nbt );
         setStack( ItemStack.fromNbt( nbt.getCompound( "stack" ) ) );
-        position = nbt.getInt( "position" );
-        prevPosition = nbt.getInt( "prevPosition" );
+        position = nbt.getDouble( "position" );
+        prevPosition = nbt.getDouble( "prevPosition" );
         if( nbt.contains( "clear" ) && nbt.getBoolean( "clear" ) )
         {
             clear();

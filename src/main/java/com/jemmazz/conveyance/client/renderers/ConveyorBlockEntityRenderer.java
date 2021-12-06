@@ -47,7 +47,7 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
         VertexConsumer vertices = vertexConsumers.getBuffer( RenderLayer.getEntitySolid( new Identifier( identifier.getNamespace() + ":textures/block/" + identifier.getPath() + ".png" ) ) );
         Matrix4f modelMatrix = matrices.peek().getPositionMatrix();
 
-        float deltaPosition = (float) MathHelper.lerp( tickDelta, prevPosition, position );
+        double deltaPosition = MathHelper.lerp( tickDelta, prevPosition, position );
 
         float length = 1;
         float height = 0.5F;
@@ -74,10 +74,10 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
             if( distance < 2500 )
             {
                 matrices.translate( 0, 0.0001, 0 );
-                vertices.vertex( modelMatrix, 0, height, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, 0, height, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, length + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, width, height, length ).color( 255, 255, 255, 255 ).texture( width, length + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, width, height, 0 ).color( 255, 255, 255, 255 ).texture( width, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, 0, height, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, 0, height, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (length + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, width, height, length ).color( 255, 255, 255, 255 ).texture( width, (float) (length + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, width, height, 0 ).color( 255, 255, 255, 255 ).texture( width, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
                 matrices.translate( 0, -0.0001, 0 );
             }
 
@@ -85,10 +85,10 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
             {
                 // bottom
                 matrices.translate( 0, -0.0001, 0 );
-                vertices.vertex( modelMatrix, width, 0, 0 ).color( 255, 255, 255, 255 ).texture( -width + 1.5F, length + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, width, 0, length ).color( 255, 255, 255, 255 ).texture( -width + 1.5F, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, 0, 0, length ).color( 255, 255, 255, 255 ).texture( 0, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, 0, 0, 0 ).color( 255, 255, 255, 255 ).texture( 0, length + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, width, 0, 0 ).color( 255, 255, 255, 255 ).texture( -width + 1.5F, (float) (length + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, width, 0, length ).color( 255, 255, 255, 255 ).texture( -width + 1.5F, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, 0, 0, length ).color( 255, 255, 255, 255 ).texture( 0, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, 0, 0, 0 ).color( 255, 255, 255, 255 ).texture( 0, (float) (length + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
                 matrices.translate( 0, 0.0001, 0 );
             }
 
@@ -98,10 +98,10 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 {
                     matrices.translate( 0, 0, 0.0001 );
                     // north
-                    vertices.vertex( modelMatrix, width, height, length ).color( 255, 255, 255, 255 ).texture( width, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, 0, height, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, 0, 0, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, height + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, width, 0, length ).color( 255, 255, 255, 255 ).texture( width, height + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, width, height, length ).color( 255, 255, 255, 255 ).texture( width, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, 0, height, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, 0, 0, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (height + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, width, 0, length ).color( 255, 255, 255, 255 ).texture( width, (float) (height + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
                     matrices.translate( 0, 0, -0.0001 );
                 }
 
@@ -109,10 +109,10 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 {
                     matrices.translate( 0, 0, -0.0001 );
                     // south
-                    vertices.vertex( modelMatrix, width, 0, 0 ).color( 255, 255, 255, 255 ).texture( width, -height + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, 0, 0, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, -height + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, 0, height, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, width, height, 0 ).color( 255, 255, 255, 255 ).texture( width, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, width, 0, 0 ).color( 255, 255, 255, 255 ).texture( width, (float) (-height + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, 0, 0, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (-height + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, 0, height, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, width, height, 0 ).color( 255, 255, 255, 255 ).texture( width, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
                     matrices.translate( 0, 0, 0.0001 );
                 }
             }
@@ -123,13 +123,13 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 ModelPart.Cuboid cuboid = new ModelPart.Cuboid( 8, 21, 0F, 0F, 0F, 16.0F, 3.0F, 3.0F, 0, 0, 0, false, 16, 16 );
                 matrices.translate( 0, 2.5f / 16f, 2.5F / 16F );
                 matrices.translate( 0, 1.5F / 16, 1.5F / 16 );
-                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( deltaPosition * 180 ) );
+                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( (float) (deltaPosition * 180) ) );
                 matrices.translate( 0, -1.5F / 16, -1.5F / 16 );
                 cuboid.renderCuboid( matrices.peek(), vertices, light, overlay, 1, 1, 1, 1 );
-                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( -deltaPosition * 180 ) );
+                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( (float) (-deltaPosition * 180) ) );
 
                 matrices.translate( 0, 0, 8F / 16F );
-                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( deltaPosition * 180 ) );
+                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( (float) (deltaPosition * 180) ) );
                 cuboid.renderCuboid( matrices.peek(), vertices, light, overlay, 1, 1, 1, 1 );
             }
             matrices.pop();
@@ -157,10 +157,10 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
             if( distance < 2500 )
             {
                 matrices.translate( 0, 0.0001, 0 );
-                vertices.vertex( modelMatrix, 0, height, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, 0, height, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, length + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, width, height, length ).color( 255, 255, 255, 255 ).texture( width, length + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, width, height, 0 ).color( 255, 255, 255, 255 ).texture( width, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, 0, height, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, 0, height, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (length + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, width, height, length ).color( 255, 255, 255, 255 ).texture( width, (float) (length + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, width, height, 0 ).color( 255, 255, 255, 255 ).texture( width, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
                 matrices.translate( 0, -0.0001, 0 );
             }
 
@@ -168,10 +168,10 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
             {
                 // bottom
                 matrices.translate( 0, -0.0001, 0 );
-                vertices.vertex( modelMatrix, width, 0, 0 ).color( 255, 255, 255, 255 ).texture( -width + 1.5F, length + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, width, 0, length ).color( 255, 255, 255, 255 ).texture( -width + 1.5F, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, 0, 0, length ).color( 255, 255, 255, 255 ).texture( 0, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                vertices.vertex( modelMatrix, 0, 0, 0 ).color( 255, 255, 255, 255 ).texture( 0, length + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, width, 0, 0 ).color( 255, 255, 255, 255 ).texture( -width + 1.5F, (float) (length + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, width, 0, length ).color( 255, 255, 255, 255 ).texture( -width + 1.5F, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, 0, 0, length ).color( 255, 255, 255, 255 ).texture( 0, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                vertices.vertex( modelMatrix, 0, 0, 0 ).color( 255, 255, 255, 255 ).texture( 0, (float) (length + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
                 matrices.translate( 0, 0.0001, 0 );
             }
 
@@ -181,10 +181,10 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 {
                     matrices.translate( 0, 0, 0.0001 );
                     // north
-                    vertices.vertex( modelMatrix, width, height, length ).color( 255, 255, 255, 255 ).texture( width, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, 0, height, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, 0, 0, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, height + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, width, 0, length ).color( 255, 255, 255, 255 ).texture( width, height + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, width, height, length ).color( 255, 255, 255, 255 ).texture( width, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, 0, height, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, 0, 0, length ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (height + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, width, 0, length ).color( 255, 255, 255, 255 ).texture( width, (float) (height + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
                     matrices.translate( 0, 0, -0.0001 );
                 }
 
@@ -192,10 +192,10 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 {
                     matrices.translate( 0, 0, -0.0001 );
                     // south
-                    vertices.vertex( modelMatrix, width, 0, 0 ).color( 255, 255, 255, 255 ).texture( width, -height + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, 0, 0, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, -height + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, 0, height, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
-                    vertices.vertex( modelMatrix, width, height, 0 ).color( 255, 255, 255, 255 ).texture( width, 0 + deltaPosition ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, width, 0, 0 ).color( 255, 255, 255, 255 ).texture( width, (float) (-height + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, 0, 0, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (-height + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, 0, height, 0 ).color( 255, 255, 255, 255 ).texture( 0 + 1.5F, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
+                    vertices.vertex( modelMatrix, width, height, 0 ).color( 255, 255, 255, 255 ).texture( width, (float) (0 + deltaPosition) ).overlay( OverlayTexture.DEFAULT_UV ).light( light ).normal( 0, 0, 1 ).next();
                     matrices.translate( 0, 0, 0.0001 );
                 }
             }
@@ -205,13 +205,13 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
                 ModelPart.Cuboid cuboid = new ModelPart.Cuboid( 8, 21, 0F, 0F, 0F, 16.0F, 3.0F, 3.0F, 0, 0, 0, false, 16, 16 );
                 matrices.translate( 0, 2.5f / 16f, 2.5F / 16F );
                 matrices.translate( 0, 1.5F / 16, 1.5F / 16 );
-                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( deltaPosition * 180 ) );
+                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( (float) (deltaPosition * 180) ) );
                 matrices.translate( 0, -1.5F / 16, -1.5F / 16 );
                 cuboid.renderCuboid( matrices.peek(), vertices, light, overlay, 1, 1, 1, 1 );
-                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( -deltaPosition * 180 ) );
+                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( (float) (-deltaPosition * 180) ) );
 
                 matrices.translate( 0, 0, 8F / 16F );
-                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( deltaPosition * 180 ) );
+                matrices.multiply( Vec3f.NEGATIVE_X.getDegreesQuaternion( (float) (deltaPosition * 180) ) );
                 cuboid.renderCuboid( matrices.peek(), vertices, light, overlay, 1, 1, 1, 1 );
             }
         }
@@ -230,9 +230,12 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
         matrices.push();
         if( !blockEntity.isEmpty() )
         {
+            //Conveyance.LOGGER.info( "Position: " + blockEntity.getPosition() + ", Prev Position: " + blockEntity.getPrevPosition() );
+
             double position = blockEntity.getPosition() / (speed * 1.0F);
             double prevPosition = blockEntity.getPrevPosition() / (speed * 1.0F);
-            float deltaPosition = (float) MathHelper.lerp( tickDelta, prevPosition, position );
+            double deltaPosition = MathHelper.lerp( tickDelta, prevPosition, position );
+            deltaPosition = (prevPosition * (1.0 - tickDelta)) +  (position * tickDelta);
 
             matrices.translate( 0.5, 0, 0.5 );
             matrices.multiply( Vec3f.NEGATIVE_Y.getDegreesQuaternion( facing.asRotation() ) );
@@ -255,7 +258,7 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
             {
                 double verticalPosition = ((VerticalConveyorBlockEntity) blockEntity).getVerticalPosition() / (speed * 1.0f);
                 double prevVerticalPosition = ((VerticalConveyorBlockEntity) blockEntity).getPrevVerticalPosition() / (speed * 1.0f);
-                float verticalDeltaPosition = (float) MathHelper.lerp( tickDelta, prevVerticalPosition, verticalPosition );
+                double verticalDeltaPosition = MathHelper.lerp( tickDelta, prevVerticalPosition, verticalPosition );
 
                 matrices.translate( 0, verticalDeltaPosition, deltaPosition );
                 matrices.push();

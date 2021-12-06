@@ -140,6 +140,7 @@ public class ConveyorBlock extends BlockWithEntity implements Conveyor
                 ItemStack heldStack = player.getStackInHand( hand ).copy();
                 heldStack.setCount( 1 );
                 blockEntity.give( heldStack );
+                blockEntity.markDirty();
 
                 player.getStackInHand( hand ).decrement( 1 );
             }
@@ -153,6 +154,7 @@ public class ConveyorBlock extends BlockWithEntity implements Conveyor
                 player.getInventory().offerOrDrop( blockEntity.getStack() );
 
                 blockEntity.give( ItemStack.EMPTY );
+                blockEntity.markDirty();
             }
 
             return ActionResult.SUCCESS;
