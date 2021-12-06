@@ -12,6 +12,9 @@
 	{   "when": { "facing": "west" },
 		"apply": { "model": "conveyance:block/conveyor", "y": 270 }
 	},
+	{   "when": { "top": "true" },
+		"apply": { "model": "conveyance:block/conveyor_pillars" }
+	},
 	{   "when": { "facing": "north", "back": "false" },
 		"apply": { "model": "conveyance:block/conveyor_back" }
 	},

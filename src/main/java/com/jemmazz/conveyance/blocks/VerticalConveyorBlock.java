@@ -136,7 +136,7 @@ public class VerticalConveyorBlock extends ConveyorBlock
             newState = newState.with( Conveyor.BACK, false );
         }
 
-        if( !newState.get( Conveyor.BACK ) && world.getBlockState( pos.offset( facing ) ).getBlock() instanceof Conveyor && world.getBlockState( pos.offset( facing ) ).get( Properties.HORIZONTAL_FACING ) == facing && world.getBlockState( pos.offset( Direction.DOWN ) ).getBlock() instanceof Conveyor )
+        if( !newState.get( Conveyor.BACK ) && world.getBlockState( pos.offset( facing ) ).getBlock() instanceof Conveyor && ( !world.getBlockState( pos.offset( facing ) ).contains( Properties.HORIZONTAL_FACING ) || world.getBlockState( pos.offset( facing ) ).get( Properties.HORIZONTAL_FACING ) == facing ) && world.getBlockState( pos.offset( Direction.DOWN ) ).getBlock() instanceof Conveyor )
         {
             if( !((Conveyor) world.getBlockState( pos.offset( Direction.DOWN ) ).getBlock()).isFlat() && world.getBlockState( pos.offset( Direction.DOWN ) ).get( Conveyor.FRONT ) )
             {

@@ -39,7 +39,7 @@ public class ConveyorBlock extends BlockWithEntity implements Conveyor
         super( settings );
 
         this.speed = speed;
-        setDefaultState( getDefaultState().with( Conveyor.FRONT, false ).with( Conveyor.BACK, false ) );
+        setDefaultState( getDefaultState().with( Conveyor.FRONT, false ).with( Conveyor.BACK, false ).with( Conveyor.TOP, false ) );
     }
 
     @Override
@@ -120,7 +120,7 @@ public class ConveyorBlock extends BlockWithEntity implements Conveyor
             Block block = Block.getBlockFromItem( player.getStackInHand( hand ).getItem() );
             Conveyor conveyor = (Conveyor) block;
 
-            if( isFlat() && hit.getSide() == Direction.UP && !conveyor.isFlat() )
+            if( world.isAir( pos.offset( facing ) ) && isFlat() && hit.getSide() == Direction.UP && !conveyor.isFlat() )
             {
                 world.setBlockState( pos.offset( facing ), block.getDefaultState().with( Properties.HORIZONTAL_FACING, facing ), Block.NOTIFY_ALL );
 
@@ -198,7 +198,7 @@ public class ConveyorBlock extends BlockWithEntity implements Conveyor
     @Override
     protected void appendProperties( StateManager.Builder<Block, BlockState> stateManagerBuilder )
     {
-        stateManagerBuilder.add( Properties.HORIZONTAL_FACING, Conveyor.BACK, Conveyor.FRONT );
+        stateManagerBuilder.add( Properties.HORIZONTAL_FACING, Conveyor.BACK, Conveyor.FRONT, Conveyor.TOP );
     }
 
     @Override
@@ -223,6 +223,15 @@ public class ConveyorBlock extends BlockWithEntity implements Conveyor
         else
         {
             newState = newState.with( Conveyor.BACK, false );
+        }
+
+        if ( world.getBlockState( pos.offset( Direction.UP ) ).getBlock() instanceof Conveyor )
+        {
+            newState = newState.with( Conveyor.TOP, true );
+        }
+        else
+        {
+            newState = newState.with( Conveyor.TOP, false );
         }
         return newState;
     }
