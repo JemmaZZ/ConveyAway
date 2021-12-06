@@ -234,8 +234,7 @@ public class ConveyorBlockEntityRenderer implements BlockEntityRenderer<Conveyor
 
             double position = blockEntity.getPosition() / (speed * 1.0F);
             double prevPosition = blockEntity.getPrevPosition() / (speed * 1.0F);
-            double deltaPosition = MathHelper.lerp( tickDelta, prevPosition, position );
-            deltaPosition = (prevPosition * (1.0 - tickDelta)) +  (position * tickDelta);
+            double deltaPosition = (prevPosition * (1.0 - tickDelta)) +  (position * tickDelta);
 
             matrices.translate( 0.5, 0, 0.5 );
             matrices.multiply( Vec3f.NEGATIVE_Y.getDegreesQuaternion( facing.asRotation() ) );
